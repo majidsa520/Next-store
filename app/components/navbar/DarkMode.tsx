@@ -1,5 +1,4 @@
 "use client";
-import { useDarkMode } from "@/app/context/DarkModeContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,24 +7,25 @@ import {
 } from "@/app/components/dropdown-menu";
 import { Button } from "@/app/components/ui/button";
 import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 export default function DarkMode() {
-  const { darkMode, setDarkMode, toggleDarkMode, setSystemThemePreference } =
-    useDarkMode();
+  const { resolvedTheme, setTheme } = useTheme();
+  console.log(resolvedTheme);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="outline" className="">
-          {darkMode ? <MoonIcon /> : <SunIcon />}
+          {resolvedTheme === "dark" ? <MoonIcon /> : <SunIcon />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem onClick={() => setDarkMode(false)}>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setDarkMode(true)}>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={setSystemThemePreference}>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>
