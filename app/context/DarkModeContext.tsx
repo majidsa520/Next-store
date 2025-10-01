@@ -1,7 +1,7 @@
 "use client";
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect } from "react";
-import useLocalStorageState from "../hooks/useLocalStorageState";
+import useLocalStorageState from "@/hooks/useLocalStorageState";
 
 type DarkModeContextType = {
   darkMode: boolean;
