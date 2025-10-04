@@ -12,3 +12,8 @@ export const links: NavLink[] = [
   { href: "/favorites", label: "favorites", protected: true },
   { href: "/orders", label: "orders", protected: true },
 ];
+export const adminLinks: NavLink[] = [
+  { href: "/admin/sales", label: "Sales", protected: true },
+  { href: "/admin/products", label: "Products", protected: true },
+  { href: "/admin/products/create", label: "Create Product", protected: true },
+];

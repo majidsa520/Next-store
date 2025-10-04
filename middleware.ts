@@ -1,10 +1,22 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-// chicking if a route is public or private
+// checking if a route is public or private
 const isPublicRoute = createRouteMatcher(["/", "/products(.*)", "/about"]);
+
+// checking if a route is admin only route
+const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
 // apply auth function on private routes only
 export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth();
+  const isAdmin = userId === process.env.ADMIN_USER_ID;
+  if (isAdminRoute(req) && !isAdmin)
+    /*
+    "/" is the pathname you want to redirect to.
+    req.url provides the base (origin + domain + protocol).
+    */
+    return NextResponse.redirect(new URL("/", req.url));
   if (!isPublicRoute(req)) await auth.protect();
 });
 

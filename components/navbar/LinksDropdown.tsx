@@ -18,8 +18,8 @@ import {
   SignUpButton,
 } from "@clerk/nextjs";
 import { LuLogIn } from "react-icons/lu";
-import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
-export default function LinksDropdown() {
+import Admin from "@/components/Auth/Admin";
+export default async function LinksDropdown() {
   return (
     <div className="flex items-center gap-4">
       <DropdownMenu>
@@ -51,7 +51,7 @@ export default function LinksDropdown() {
               </SignUpButton>
             </DropdownMenuItem>
           </SignedOut>
-
+          {/* Links for all users(signed up and guest) */}
           {links.map((link) => (
             <DropdownMenuItem key={link.href} asChild>
               {!link.protected && (
@@ -61,6 +61,12 @@ export default function LinksDropdown() {
               )}
             </DropdownMenuItem>
           ))}
+          {/* Links for signed in users only */}
+          <Admin>
+            <DropdownMenuItem>
+              <Link href="/admin/products">Dashboard</Link>
+            </DropdownMenuItem>
+          </Admin>
           <SignedIn>
             {links.map((link) => (
               <DropdownMenuItem key={link.href} asChild>
