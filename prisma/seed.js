@@ -12,4 +12,7 @@ main()
   .catch((e) => {
     console.log(e);
   })
-  .finally(() => prisma.$disconnect());
+  .finally(() => {
+    console.log("success!");
+    prisma.$disconnect();
+  });

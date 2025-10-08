@@ -13,6 +13,7 @@ export default function Sidebar() {
           key={href}
           variant={href === path ? "default" : "ghost"}
           asChild
+          className="px-4"
         >
           <Link href={href} className="justify-start px-8">
             {label}

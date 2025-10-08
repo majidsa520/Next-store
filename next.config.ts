@@ -12,7 +12,19 @@ const nextConfig: NextConfig = {
         // pathname: "/photos/**",
         // search: "",
       },
+      {
+        protocol: "https",
+        hostname: "yidoflkxvsmcnvqwpwcv.supabase.co",
+        // port: "",
+        // pathname: "/photos/**",
+        // search: "",
+      },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "2mb",
+    },
   },
 };
 
